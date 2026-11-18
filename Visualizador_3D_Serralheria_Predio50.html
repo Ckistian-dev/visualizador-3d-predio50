@@ -28,7 +28,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 60px;
+      height: 54px;
       background: rgba(15, 23, 42, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -36,14 +36,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
-      z-index: 20;
+      padding: 0 18px;
+      gap: 12px;
+      z-index: 25;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
     .brand-title {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
+      min-width: 0;
     }
     .badge-dallago {
       background: #0284c7;
@@ -53,32 +55,33 @@
       padding: 5px 9px;
       border-radius: 6px;
       letter-spacing: 0.8px;
+      flex-shrink: 0;
     }
     .brand-name {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: #ffffff;
-      display: block;
-    }
-    .brand-sub {
-      font-size: 11px;
-      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .nav-controls-center {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      min-width: 0;
     }
     .nav-btn {
       background: #1e293b;
       border: 1px solid #334155;
       color: #e2e8f0;
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 8px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      flex-shrink: 0;
     }
     .nav-btn:hover {
       background: #0284c7;
@@ -89,23 +92,47 @@
       background: #0f172a;
       border: 1px solid #38bdf8;
       color: #ffffff;
-      padding: 7px 16px;
+      padding: 7px 12px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      min-width: 320px;
+      min-width: 260px;
+      max-width: 400px;
       outline: none;
     }
-    .item-counter {
+    .panel-toggles {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .panel-toggle-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 6px 10px;
+      border-radius: 8px;
       font-size: 12px;
-      color: #38bdf8;
-      font-weight: 700;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 4px 10px;
-      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
       white-space: nowrap;
+    }
+    .panel-toggle-btn:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .panel-toggle-btn.active {
+      background: rgba(2, 132, 199, 0.25);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    .panel-hidden {
+      display: none !important;
     }
     .info-card {
       position: absolute;
@@ -364,6 +391,61 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
+      gap: 8px;
+    }
+    .card-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+    .card-header-right {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .card-mini-btn {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .card-mini-btn:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .panel-close-btn {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1.4;
+    }
+    .panel-close-btn:hover {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .toolbar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      font-weight: 700;
+      color: #e2e8f0;
     }
     .card-tag {
       display: inline-block;
@@ -605,6 +687,7 @@
       position: relative;
       overflow: hidden;
       background: radial-gradient(circle at center, #0b1329 0%, #03050c 100%);
+      touch-action: none;
     }
     .fs-image-body {
       width: 100%;
@@ -614,6 +697,7 @@
       justify-content: center;
       cursor: grab;
       user-select: none;
+      touch-action: none;
     }
     .fs-image-body:active {
       cursor: grabbing;
@@ -656,6 +740,136 @@
       margin-bottom: 16px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Responsive Mobile Layout */
+    @media (max-width: 768px) {
+      .top-bar {
+        height: auto;
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .brand-title {
+        order: 1;
+        flex: 1;
+        min-width: 0;
+        gap: 8px;
+      }
+      .brand-name {
+        font-size: 13px;
+      }
+      .panel-toggles {
+        order: 2;
+        gap: 5px;
+      }
+      .toggle-label {
+        display: none;
+      }
+      .panel-toggle-btn {
+        padding: 6px 9px;
+        font-size: 13px;
+      }
+      .nav-controls-center {
+        order: 3;
+        width: 100%;
+        gap: 6px;
+      }
+      .nav-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .item-dropdown {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        max-width: none;
+        font-size: 12px;
+        padding: 6px 8px;
+      }
+      .toolbar {
+        top: 94px;
+        right: 10px;
+        bottom: auto;
+        width: 205px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        z-index: 30;
+        padding: 10px;
+      }
+      .info-card {
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        width: auto;
+        max-width: none;
+        max-height: 52vh;
+        border-radius: 14px;
+      }
+      .image-section-header {
+        padding: 7px 10px;
+      }
+      .image-preview-wrapper {
+        height: 135px;
+        margin: 6px 10px 4px 10px;
+      }
+      .image-sec-title {
+        max-width: 200px;
+        font-size: 11px;
+      }
+      .card-content-section {
+        padding: 12px 14px;
+        max-height: 30vh;
+      }
+      .card-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      .card-meta-grid {
+        gap: 6px;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+      }
+      .fs-top-bar {
+        flex-wrap: wrap;
+        padding: 8px 12px;
+        gap: 8px;
+      }
+      .fs-title {
+        font-size: 13px;
+      }
+      .fs-subtitle {
+        font-size: 11px;
+      }
+      .fs-controls {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .fs-bottom-bar {
+        padding: 6px 12px;
+        font-size: 10px;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+    }
+    @media (max-width: 480px) {
+      .badge-dallago {
+        font-size: 10px;
+        padding: 4px 7px;
+      }
+      .image-preview-wrapper {
+        height: 120px;
+      }
+      .fs-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+      }
+      .fs-btn-close {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -671,14 +885,11 @@
   <div class="top-bar">
     <div class="brand-title">
       <span class="badge-dallago">DALLAGO 3D</span>
-      <div>
-        <span class="brand-name">Prédio 50 - Controle Caldeira & Casa de Bombas</span>
-        <span class="brand-sub">COPASUL - Obra 92 (Naviraí/MS) | Serralheria & Elementos Metálicos (3D BIM + 2D R09)</span>
-      </div>
+      <span class="brand-name">Prédio 50 - Controle Caldeira & Casa de Bombas</span>
     </div>
-    
+
     <div class="nav-controls-center">
-      <button class="nav-btn" onclick="stepItem(-1)">◀ Anterior</button>
+      <button class="nav-btn" onclick="stepItem(-1)" title="Item Anterior">◀</button>
       <select id="item-dropdown" class="item-dropdown" onchange="onSelectDropdown(this.value)">
         <option value="ALL" selected>🌐 [VISÃO GERAL] Edificação Completa & Todos os Itens</option>
         <option value="P05">01 | P05 - Portão P05 - Gradil Metálico 2 Folhas (3,00 x 3,50 m)</option>
@@ -690,8 +901,17 @@
         <option value="CAN-02">07 | CAN-02 - Canaleta Perimetral de Contenção Oleosa/Pluvial Chapa #14 (21,50 m)</option>
         <option value="GRE-02">08 | GRE-02 - Grelha Metálica Pesada Eletrofundida (Larg. 30cm) - Contenção</option>
       </select>
-      <button class="nav-btn" onclick="stepItem(1)">Próximo ▶</button>
-      <span class="item-counter" id="item-counter">Visão Geral</span>
+      <button class="nav-btn" onclick="stepItem(1)" title="Próximo Item">▶</button>
+      <span id="item-counter" style="display: none;">Visão Geral</span>
+    </div>
+
+    <div class="panel-toggles">
+      <button class="panel-toggle-btn active" id="btn-toggle-info-card" onclick="toggleInfoCard()" title="Mostrar/Ocultar Ficha e Projeto 2D">
+        📋 <span class="toggle-label">Ficha &amp; 2D</span>
+      </button>
+      <button class="panel-toggle-btn active" id="btn-toggle-toolbar" onclick="toggleToolbar()" title="Mostrar/Ocultar Ferramentas 3D">
+        ⚙️ <span class="toggle-label">Opções 3D</span>
+      </button>
     </div>
   </div>
 
@@ -708,6 +928,7 @@
         <div class="image-header-actions">
           <button class="img-action-btn primary" onclick="openFullscreenImage()" title="Tela Inteira (⛶)">⛶ Tela Cheia</button>
           <button class="img-action-btn" id="btn-toggle-img-visibility" onclick="toggleImagePreviewVisibility()">▲ Ocultar</button>
+          <button class="panel-close-btn" onclick="toggleInfoCard(false)" title="Ocultar painel lateral">✕</button>
         </div>
       </div>
       
@@ -737,37 +958,49 @@
 
     <div class="card-content-section" id="card-content-section">
       <div class="card-header-row">
-        <span class="card-tag" id="card-sku">VISÃO GERAL</span>
-        <span class="card-category" id="card-cat">Prédio 50</span>
+        <div class="card-header-left">
+          <span class="card-tag" id="card-sku">VISÃO GERAL</span>
+          <span class="card-category" id="card-cat">Prédio 50</span>
+        </div>
+        <div class="card-header-right">
+          <button class="card-mini-btn" id="btn-toggle-card-body" onclick="toggleCardBody()">▼ Minimizar</button>
+          <button class="panel-close-btn" onclick="toggleInfoCard(false)" title="Retirar painel lateral">✕</button>
+        </div>
       </div>
       <h1 class="card-title" id="card-title">Edificação Completa</h1>
-      
-      <div class="card-meta-grid">
-        <div class="meta-item">
-          <span class="meta-label">Dimensões</span>
-          <span class="meta-val" id="card-dim">-</span>
+
+      <div id="card-details-collapsible">
+        <div class="card-meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Dimensões</span>
+            <span class="meta-val" id="card-dim">-</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Quantidade / Área</span>
+            <span class="meta-val" id="card-quant">-</span>
+          </div>
+          <div class="meta-item" style="grid-column: span 2;">
+            <span class="meta-label">Localização</span>
+            <span class="meta-val" id="card-loc">-</span>
+          </div>
         </div>
-        <div class="meta-item">
-          <span class="meta-label">Quantidade / Área</span>
-          <span class="meta-val" id="card-quant">-</span>
+
+        <p class="card-desc" id="card-desc">Visualização 3D unificada com pranchas técnicas executivas.</p>
+
+        <div class="card-actions">
+          <button class="btn-focus-quick" onclick="focusOnCurrentItem()">🎯 Focar 3D</button>
+          <button class="btn-fullscreen-img-action" onclick="openFullscreenImage()">🔍 Ver 2D Ampliado</button>
         </div>
-        <div class="meta-item" style="grid-column: span 2;">
-          <span class="meta-label">Localização</span>
-          <span class="meta-val" id="card-loc">-</span>
-        </div>
-      </div>
-      
-      <p class="card-desc" id="card-desc">Visualização 3D unificada com pranchas técnicas executivas.</p>
-      
-      <div class="card-actions">
-        <button class="btn-focus-quick" onclick="focusOnCurrentItem()">🎯 Focar 3D</button>
-        <button class="btn-fullscreen-img-action" onclick="openFullscreenImage()">🔍 Ver 2D Ampliado</button>
       </div>
     </div>
   </div>
 
   <!-- Toolbar -->
-  <div class="toolbar">
+  <div class="toolbar" id="toolbar">
+    <div class="toolbar-header">
+      <span>⚙️ Opções 3D</span>
+      <button class="panel-close-btn" onclick="toggleToolbar(false)" title="Retirar painel lateral">✕</button>
+    </div>
     <div class="tool-group-label">Edificação</div>
     <button class="tool-btn active" id="btn-toggle-surroundings" onclick="toggleSurroundings()">
       <span id="surround-icon">👁️</span> <span id="surround-text">Entorno: Visível</span>
@@ -824,7 +1057,7 @@
     </div>
 
     <div class="fs-bottom-bar">
-      <span>💡 Dica: Use a roda do mouse para Zoom e arraste para mover a imagem (Pan). Use as setas do teclado para navegar.</span>
+      <span>💡 Dica: Use a roda do mouse ou pinça (touch) para Zoom e arraste para mover a imagem (Pan).</span>
       <span id="fs-file-name" style="color: #64748b;">desenho.png</span>
     </div>
   </div>
@@ -1906,6 +2139,9 @@
     let surroundingsOpacity = 0.25;
     let currentImageIndex = 0;
     let imagePreviewVisible = true;
+    let infoCardVisible = true;
+    let toolbarVisible = true;
+    let cardBodyVisible = true;
 
     // Fullscreen Pan & Zoom State
     let fsZoom = 1.0;
@@ -1914,6 +2150,11 @@
     let isFsDragging = false;
     let fsDragStartX = 0;
     let fsDragStartY = 0;
+    let fsTouchDist = 0;
+
+    function getAspectFactor() {
+      return (camera && camera.aspect < 1.0) ? Math.min(1.75, 1.05 / camera.aspect) : 1.0;
+    }
 
     const itemSequence = ["ALL", ...Object.keys(BIM_3D_DATA.items)];
 
@@ -1960,6 +2201,12 @@
       scene.add(grid);
 
       buildModels();
+      if (window.innerWidth <= 768) {
+        imagePreviewVisible = false;
+        const imgBtn = document.getElementById('btn-toggle-img-visibility');
+        if (imgBtn) imgBtn.innerText = '▼ Mostrar';
+        toggleToolbar(false);
+      }
       selectItem("ALL", true);
       setupFullscreenPanZoom();
 
@@ -2031,11 +2278,13 @@
       document.getElementById('item-dropdown').value = id;
 
       const counter = document.getElementById('item-counter');
-      if (id === 'ALL') {
-        counter.innerText = 'Visão Geral';
-      } else {
-        const idx = itemSequence.indexOf(id);
-        counter.innerText = `Item ${idx} de ${itemSequence.length - 1}`;
+      if (counter) {
+        if (id === 'ALL') {
+          counter.innerText = 'Visão Geral';
+        } else {
+          const idx = itemSequence.indexOf(id);
+          counter.innerText = `Item ${idx} de ${itemSequence.length - 1}`;
+        }
       }
 
       updateImageDisplay();
@@ -2061,7 +2310,8 @@
           contextMesh.visible = surroundingsVisible;
           contextMesh.material.opacity = surroundingsOpacity;
         }
-        const camPos = new THREE.Vector3(36, 26, 42);
+        const af = getAspectFactor();
+        const camPos = new THREE.Vector3(36 * af, 26 * af, 42 * af);
         const camTarget = new THREE.Vector3(0, 3.5, 0);
         if (initial) {
           camera.position.copy(camPos);
@@ -2199,12 +2449,34 @@
     function toggleImagePreviewVisibility() {
       imagePreviewVisible = !imagePreviewVisible;
       const btn = document.getElementById('btn-toggle-img-visibility');
-      if (imagePreviewVisible) {
-        btn.innerText = '▲ Ocultar';
-      } else {
-        btn.innerText = '▼ Mostrar';
+      if (btn) {
+        btn.innerText = imagePreviewVisible ? '▲ Ocultar' : '▼ Mostrar';
       }
       updateImageDisplay();
+    }
+
+    function toggleInfoCard(forceState) {
+      infoCardVisible = (typeof forceState === 'boolean') ? forceState : !infoCardVisible;
+      const card = document.getElementById('info-card');
+      const btn = document.getElementById('btn-toggle-info-card');
+      if (card) card.classList.toggle('panel-hidden', !infoCardVisible);
+      if (btn) btn.classList.toggle('active', infoCardVisible);
+    }
+
+    function toggleToolbar(forceState) {
+      toolbarVisible = (typeof forceState === 'boolean') ? forceState : !toolbarVisible;
+      const tb = document.getElementById('toolbar');
+      const btn = document.getElementById('btn-toggle-toolbar');
+      if (tb) tb.classList.toggle('panel-hidden', !toolbarVisible);
+      if (btn) btn.classList.toggle('active', toolbarVisible);
+    }
+
+    function toggleCardBody(forceState) {
+      cardBodyVisible = (typeof forceState === 'boolean') ? forceState : !cardBodyVisible;
+      const details = document.getElementById('card-details-collapsible');
+      const btn = document.getElementById('btn-toggle-card-body');
+      if (details) details.classList.toggle('panel-hidden', !cardBodyVisible);
+      if (btn) btn.innerText = cardBodyVisible ? '▼ Minimizar' : '▲ Expandir Ficha';
     }
 
     function openFullscreenImage() {
@@ -2264,6 +2536,45 @@
       window.addEventListener('mouseup', () => {
         isFsDragging = false;
       });
+
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isFsDragging = true;
+          fsTouchDist = 0;
+          fsDragStartX = e.touches[0].clientX - fsPanX;
+          fsDragStartY = e.touches[0].clientY - fsPanY;
+        } else if (e.touches.length === 2) {
+          isFsDragging = false;
+          const dx = e.touches[0].clientX - e.touches[1].clientX;
+          const dy = e.touches[0].clientY - e.touches[1].clientY;
+          fsTouchDist = Math.hypot(dx, dy);
+        }
+      }, { passive: false });
+
+      container.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (e.touches.length === 1 && isFsDragging) {
+          fsPanX = e.touches[0].clientX - fsDragStartX;
+          fsPanY = e.touches[0].clientY - fsDragStartY;
+          applyFsTransform();
+        } else if (e.touches.length === 2) {
+          const dx = e.touches[0].clientX - e.touches[1].clientX;
+          const dy = e.touches[0].clientY - e.touches[1].clientY;
+          const dist = Math.hypot(dx, dy);
+          if (fsTouchDist > 0) {
+            const ratio = dist / fsTouchDist;
+            fsZoom = Math.min(Math.max(0.5, fsZoom * ratio), 5.0);
+            document.getElementById('fs-zoom-label').innerText = Math.round(fsZoom * 100) + '%';
+            applyFsTransform();
+          }
+          fsTouchDist = dist;
+        }
+      }, { passive: false });
+
+      container.addEventListener('touchend', (e) => {
+        if (e.touches.length < 2) fsTouchDist = 0;
+        if (e.touches.length === 0) isFsDragging = false;
+      });
     }
 
     function changeFsZoom(delta) {
@@ -2286,8 +2597,9 @@
     }
 
     function focusOnItem(id, instant=false) {
+      const af = getAspectFactor();
       if (id === 'ALL') {
-        tweenCamera(new THREE.Vector3(36, 26, 42), new THREE.Vector3(0, 3.5, 0), 800);
+        tweenCamera(new THREE.Vector3(36 * af, 26 * af, 42 * af), new THREE.Vector3(0, 3.5, 0), 800);
         return;
       }
       const data = BIM_3D_DATA.items[id];
@@ -2296,7 +2608,7 @@
       const c = data.center;
       const s = data.size;
       const maxDim = Math.max(s[0], s[1], s[2], 2.5);
-      const dist = maxDim * 2.1;
+      const dist = maxDim * 2.1 * af;
       const targetX = c[0], targetY = c[1], targetZ = c[2];
       const camX = targetX + dist * 0.8;
       const camY = targetY + dist * 0.55 + 0.8;
@@ -2317,15 +2629,16 @@
 
     function setView(viewType) {
       let camPos, camTarget;
+      const af = getAspectFactor();
       if (currentItemId === 'ALL') {
         camTarget = new THREE.Vector3(0, 3.5, 0);
-        if (viewType === 'iso') camPos = new THREE.Vector3(36, 26, 42);
-        else if (viewType === 'top') camPos = new THREE.Vector3(0, 60, 0.001);
-        else if (viewType === 'front') camPos = new THREE.Vector3(0, 4, 55);
+        if (viewType === 'iso') camPos = new THREE.Vector3(36 * af, 26 * af, 42 * af);
+        else if (viewType === 'top') camPos = new THREE.Vector3(0, 60 * af, 0.001);
+        else if (viewType === 'front') camPos = new THREE.Vector3(0, 4, 55 * af);
       } else {
         const d = BIM_3D_DATA.items[currentItemId];
         camTarget = new THREE.Vector3(d.center[0], d.center[1], d.center[2]);
-        const r = Math.max(d.size[0], d.size[1], d.size[2], 3) * 2;
+        const r = Math.max(d.size[0], d.size[1], d.size[2], 3) * 2 * af;
         if (viewType === 'iso') camPos = new THREE.Vector3(camTarget.x + r, camTarget.y + r*0.8, camTarget.z + r);
         else if (viewType === 'top') camPos = new THREE.Vector3(camTarget.x, camTarget.y + r*1.6, camTarget.z + 0.001);
         else if (viewType === 'front') camPos = new THREE.Vector3(camTarget.x, camTarget.y + 0.5, camTarget.z + r*1.4);
